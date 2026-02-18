@@ -38,13 +38,42 @@
 </head>
 <body>
   <main style="max-width:800px;margin:3rem auto;font-family:system-ui,Arial,Helvetica,sans-serif;line-height:1.6;padding:0 1rem;">
-    <h1>NVIDIA RTX 5070 PyTorch Compatibility Guide</h1>
-    <p><strong>TL;DR:</strong> Use PyTorch <strong>2.9.1+cu128</strong> (CUDA 12.8) for RTX 5070 (sm_120). Run <code>python verify_gpu.py</code> to confirm your setup.</p>
-    <p>This repository's full guide is available as the canonical README. For human-readable details, examples, and troubleshooting, see the README in this repo.</p>
-    <p><a href="README.md">Open the full guide (README)</a></p>
+    <div id="content">
+      <h1>NVIDIA RTX 5070 PyTorch Compatibility Guide</h1>
+      <p><strong>TL;DR:</strong> Use PyTorch <strong>2.9.1+cu128</strong> (CUDA 12.8) for RTX 5070 (sm_120). Run <code>python verify_gpu.py</code> to confirm your setup.</p>
+      <p>Loading full guide...</p>
+    </div>
 
     <hr>
     <p style="font-size:0.9rem;color:#666;">Maintainer: Stephen Smetana — Last updated: 2026-02-17</p>
+
+    <!-- Client-side markdown renderer: fetch README.md and render into #content -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@2.5.3/dist/purify.min.js"></script>
+    <script>
+      (async function(){
+        const container = document.getElementById('content');
+        try{
+          const resp = await fetch('./README.md');
+          if(!resp.ok){
+            container.insertAdjacentHTML('beforeend', '<p>Unable to load README.md (status '+resp.status+').</p>');
+            return;
+          }
+          const md = await resp.text();
+          const raw = marked.parse(md);
+          const clean = DOMPurify.sanitize(raw);
+          container.innerHTML = clean;
+          // Ensure anchors open in same page for relative links
+          container.querySelectorAll('a').forEach(a=>{
+            const href = a.getAttribute('href')||'';
+            if(href.endsWith('.md')) a.setAttribute('href', href.replace(/\.md$/, '.html'));
+          });
+        }catch(e){
+          console.error(e);
+          container.insertAdjacentHTML('beforeend', '<p>Failed to load full guide.</p>');
+        }
+      })();
+    </script>
   </main>
 </body>
 </html>
