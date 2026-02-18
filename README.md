@@ -14,7 +14,7 @@ pip install torch==2.9.1+cu128 torchvision torchaudio --index-url https://downlo
 
 ## The Problem
 
-RTX 50-series GPUs (launched January 2026) have compute capability **sm_120**, which requires PyTorch binaries compiled with explicit kernel support.
+RTX 50-series GPUs have compute capability **sm_120**, which requires PyTorch binaries compiled with explicit kernel support.
 
 ### Symptoms
 
@@ -226,13 +226,6 @@ Setting `TOKENIZERS_PARALLELISM=false` is recommended for training scripts where
 - ⚠️ "No kernel image" errors
 - ❌ Cannot run training/inference
 
-## Timeline
-
-| Date | Event |
-|------|-------|
-| January 2026 | RTX 5070 launched with sm_120 |
-| December 2025 | PyTorch 2.6 released (pre-RTX 5070) |
-| Early 2026 | PyTorch 2.9 released with sm_120 support |
 
 ## Additional Resources
 
