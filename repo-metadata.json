@@ -1,0 +1,7 @@
+{
+  "title": "NVIDIA RTX 5070 PyTorch Compatibility Guide",
+  "summary": "Troubleshooting and installation guide for running PyTorch on NVIDIA RTX 5070/5080/5090 (sm_120). Recommended: PyTorch 2.9.1+cu128 / CUDA 12.8.",
+  "keywords": ["RTX 5070","sm_120","PyTorch 2.9.1","cu128","CUDA 12.8","gpu","troubleshooting"],
+  "last_updated": "2026-02-17",
+  "canonical_url": "https://stephensmetana.github.io/nvidia-rtx5070-pytorch-guide/"
+}
